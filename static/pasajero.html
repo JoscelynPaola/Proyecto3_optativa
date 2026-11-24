@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rutas Puebla · Pasajero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div id="mensaje" role="status" aria-live="polite"></div>
+  <header class="cabecera compacta">
+    <div class="cabecera-contenido">
+      <div class="barra-sesion"><span id="quien"></span><button type="button" class="btn-suave" onclick="salir()">Cerrar sesión</button></div>
+      <h1>Rutas Puebla</h1>
+      <p class="subtitulo">¿Qué ruta te lleva? Búscala o descubre cuáles pasan cerca de ti</p>
+    </div>
+  </header>
+
+  <main class="vista-pasajero">
+    <section class="panel area-buscar">
+      <h2>Encuentra tu ruta</h2>
+      <div class="campo">
+        <label for="buscar">Buscar por nombre de ruta</label>
+        <input id="buscar" type="search" placeholder="Ej. Ruta 15" autocomplete="off">
+      </div>
+      <div class="campo">
+        <label for="radio">Distancia para «cerca de mí»</label>
+        <select id="radio">
+          <option value="300">300 m (2-3 cuadras)</option>
+          <option value="500" selected>500 m</option>
+          <option value="1000">1 km</option>
+        </select>
+      </div>
+      <div class="botones">
+        <button type="button" id="btn-ubicacion" class="btn-principal">Usar mi ubicación</button>
+        <button type="button" id="btn-limpiar" class="btn-gris">Limpiar</button>
+      </div>
+      <p class="ayuda">También puedes tocar cualquier punto del mapa para poner un lugar y ver qué rutas pasan por ahí.</p>
+      <h3 class="subtitulo-lista" id="titulo-resultados">Todas las rutas <span id="contador" class="contador">0</span></h3>
+      <div id="resultados"></div>
+    </section>
+
+    <section class="panel panel-mapa area-mapa">
+      <h2 id="titulo-mapa">Mapa</h2>
+      <p class="ayuda" id="detalle-mapa">Toca una ruta de la lista para ver su recorrido y sus paradas.</p>
+      <div id="mapa" class="mapa-alto"></div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="/static/auth.js"></script>
+  <script src="/static/pasajero.js"></script>
+</body>
+</html>

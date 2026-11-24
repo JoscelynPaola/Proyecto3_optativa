@@ -1,0 +1,323 @@
+:root {
+  --morado-900: #3b1578;
+  --morado-700: #5b21b6;
+  --morado-600: #7c3aed;
+  --morado-200: #ddd2fb;
+  --morado-100: #ede9fe;
+  --morado-50: #f7f4ff;
+  --texto: #2a2140;
+  --texto-suave: #6b6385;
+  --verde: #15803d;
+  --verde-fondo: #dcfce7;
+  --rojo: #b91c1c;
+  --rojo-fondo: #fee2e2;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(124, 58, 237, 0.10), transparent 40%),
+    radial-gradient(circle at 88% 70%, rgba(167, 139, 250, 0.18), transparent 45%),
+    var(--morado-50);
+  background-attachment: fixed;
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  padding: 72px 24px 110px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400' fill='none'%3E%3Cpath d='M-20 330 C150 330 160 120 330 160 S520 330 640 190 S760 60 830 90' stroke='%23ffffff' stroke-opacity='.28' stroke-width='5' stroke-dasharray='2 16' stroke-linecap='round'/%3E%3Cpath d='M-20 60 C120 40 200 200 360 110 S600 20 830 250' stroke='%23ffffff' stroke-opacity='.16' stroke-width='4' stroke-dasharray='2 14' stroke-linecap='round'/%3E%3Cg fill='%23ffffff'%3E%3Ccircle cx='330' cy='160' r='11' fill-opacity='.9'/%3E%3Ccircle cx='640' cy='190' r='11' fill-opacity='.9'/%3E%3Ccircle cx='360' cy='110' r='8' fill-opacity='.5'/%3E%3C/g%3E%3C/svg%3E") right center / min(900px, 100%) no-repeat,
+    radial-gradient(circle at 85% 20%, #a78bfa 0%, transparent 45%),
+    linear-gradient(135deg, var(--morado-900), var(--morado-600));
+}
+.cabecera-contenido { max-width: 1160px; margin: 0 auto; }
+.cabecera h1 {
+  margin: 0;
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.subtitulo {
+  margin: 14px 0 0;
+  max-width: 520px;
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  color: var(--morado-200);
+}
+
+.pasos {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 0;
+  padding: 0;
+}
+.pasos li {
+  background: rgba(255, 255, 255, 0.14);
+  padding: 6px 14px 6px 8px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.pasos b {
+  display: inline-grid;
+  place-items: center;
+  width: 22px; height: 22px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--morado-700);
+  font-size: 0.8rem;
+}
+
+/* ---------- Distribución ---------- */
+main {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 1.4fr;
+  grid-template-areas:
+    "form mapa"
+    "lista lista";
+  gap: 20px;
+  max-width: 1200px;
+  margin: -70px auto 0;
+  padding: 0 20px 40px;
+  position: relative;
+}
+.area-form { grid-area: form; }
+.area-mapa { grid-area: mapa; }
+.area-lista { grid-area: lista; }
+
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-areas: "form" "mapa" "lista";
+  }
+}
+
+.panel {
+  background: #fff;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(59, 21, 120, 0.12);
+}
+.panel h2 { margin: 0 0 4px; font-size: 1.25rem; color: var(--morado-900); }
+
+.ayuda { margin: 0 0 12px; font-size: 0.85rem; color: var(--texto-suave); }
+
+/* ---------- Formulario ---------- */
+form { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
+.campo { display: flex; flex-direction: column; gap: 4px; }
+.campo .ayuda { margin: 0; }
+.fila { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+form > .ayuda { margin: -6px 0 0; }
+
+label { font-weight: 700; font-size: 0.9rem; }
+
+input, select {
+  font: inherit;
+  padding: 11px 12px;
+  border: 2px solid var(--morado-100);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--texto);
+  width: 100%;
+}
+input:focus, select:focus, button:focus-visible {
+  outline: 3px solid var(--morado-200);
+  border-color: var(--morado-600);
+}
+
+/* ---------- Botones ---------- */
+button {
+  font: inherit;
+  font-weight: 700;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+  background: var(--morado-600);
+  transition: background 0.15s;
+}
+button:hover { background: var(--morado-700); }
+.botones { display: flex; gap: 10px; margin-top: 4px; }
+.btn-principal { flex: 1; }
+.btn-gris { background: #e5e1f0; color: var(--texto); }
+.btn-gris:hover { background: #d6d0e6; }
+.btn-suave { background: var(--morado-100); color: var(--morado-700); padding: 8px 14px; }
+.btn-suave:hover { background: var(--morado-200); }
+.oculto { display: none; }
+
+/* ---------- Mensajes ---------- */
+#mensaje { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 1000; width: min(560px, calc(100% - 32px)); }
+#mensaje:empty { display: none; }
+#mensaje.exito, #mensaje.error {
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(59, 21, 120, 0.25);
+}
+#mensaje.exito { background: var(--verde-fondo); color: var(--verde); }
+#mensaje.error { background: var(--rojo-fondo); color: var(--rojo); }
+
+/* ---------- Mapa ---------- */
+#mapa {
+  height: 430px;
+  border-radius: 12px;
+  border: 2px solid var(--morado-100);
+}
+.pin {
+  display: block;
+  width: 26px; height: 26px;
+  background: var(--morado-600);
+  border: 3px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 3px 8px rgba(59, 21, 120, 0.4);
+}
+.pin::after {
+  content: "";
+  position: absolute;
+  top: 6px; left: 6px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* ---------- Lista ---------- */
+.encabezado-lista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.encabezado-lista h2 { margin: 0; }
+.contador {
+  display: inline-block;
+  min-width: 26px;
+  padding: 0 8px;
+  margin-left: 6px;
+  border-radius: 999px;
+  background: var(--morado-100);
+  color: var(--morado-700);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+#lista-paradas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.parada {
+  border: 2px solid var(--morado-100);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.parada-cabecera { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.parada h3 { margin: 0; font-size: 1.05rem; color: var(--morado-900); }
+.parada p { margin: 0; font-size: 0.9rem; color: var(--texto-suave); }
+
+.estado {
+  flex-shrink: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.estado.activa { background: var(--verde-fondo); color: var(--verde); }
+.estado.inactiva { background: #eceaf1; color: var(--texto-suave); }
+
+.rutas { display: flex; flex-wrap: wrap; gap: 6px; }
+.ruta {
+  background: var(--morado-100);
+  color: var(--morado-700);
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.sin-rutas { font-size: 0.85rem; color: var(--texto-suave); }
+
+.acciones { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.acciones button { padding: 7px 12px; font-size: 0.85rem; }
+.btn-ubicar { background: var(--morado-600); }
+.btn-editar { background: var(--morado-100); color: var(--morado-700); }
+.btn-editar:hover { background: var(--morado-200); }
+.btn-eliminar { background: var(--rojo-fondo); color: var(--rojo); margin-left: auto; }
+.btn-eliminar:hover { background: #fecaca; }
+
+.vacio {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 28px 16px;
+  border: 2px dashed var(--morado-200);
+  border-radius: 14px;
+  color: var(--texto-suave);
+}
+.vacio strong { display: block; font-size: 1.1rem; color: var(--morado-900); margin-bottom: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- Sesión, login y vistas por rol ---------- */
+.barra-sesion { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-bottom: 18px; font-weight: 700; color: var(--morado-200); }
+.cabecera.compacta { padding-bottom: 100px; }
+.cabecera.compacta h1 { font-size: clamp(2.4rem, 7vw, 4rem); }
+
+main.solo { display: block; max-width: 440px; }
+.login { padding: 26px; }
+.pestanas { display: flex; gap: 6px; background: var(--morado-100); padding: 5px; border-radius: 12px; margin-bottom: 8px; }
+.pestanas button { flex: 1; background: transparent; color: var(--morado-700); }
+.pestanas button:hover { background: var(--morado-200); }
+.pestanas button.activa { background: #fff; box-shadow: 0 2px 8px rgba(59, 21, 120, 0.15); }
+
+.area-rutas { grid-area: rutas; }
+main:has(.area-rutas) {
+  grid-template-areas: "form mapa" "rutas rutas" "lista lista";
+}
+@media (max-width: 900px) {
+  main:has(.area-rutas) { grid-template-areas: "form" "mapa" "rutas" "lista"; }
+}
+.fila-ruta { grid-template-columns: 1fr 90px; align-items: end; }
+input[type="color"] { padding: 3px; height: 44px; cursor: pointer; }
+.subtitulo-lista { margin: 22px 0 12px; color: var(--morado-900); }
+#lista-rutas { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.punto-color { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 8px; vertical-align: -1px; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.15); }
+
+/* Vista del pasajero */
+main.vista-pasajero {
+  grid-template-columns: minmax(300px, 380px) 1fr;
+  grid-template-areas: "buscar mapa";
+  align-items: start;
+}
+.area-buscar { grid-area: buscar; }
+.mapa-alto { height: 620px !important; }
+@media (max-width: 900px) {
+  main.vista-pasajero { grid-template-columns: 1fr; grid-template-areas: "buscar" "mapa"; }
+  .mapa-alto { height: 420px !important; }
+}
+#resultados { display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; }
+.ruta-item {
+  display: flex; align-items: center; gap: 4px; text-align: left; width: 100%;
+  background: #fff; color: var(--texto); border: 2px solid var(--morado-100); padding: 10px 12px;
+}
+.ruta-item:hover, .ruta-item.activa { background: var(--morado-50); border-color: var(--morado-600); }
+.ruta-nombre { flex: 1; }
+.distancia { font-size: 0.8rem; color: var(--morado-700); background: var(--morado-100); padding: 2px 8px; border-radius: 999px; }
+.pin.yo { background: #1f2937; }

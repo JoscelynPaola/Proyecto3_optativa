@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rutas Puebla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="cabecera-contenido">
+      <h1>Rutas Puebla</h1>
+      <p class="subtitulo">Encuentra y administra las paradas de transporte de tu ciudad</p>
+      <ol class="pasos">
+        <li><b>1</b> Llena los datos</li>
+        <li><b>2</b> Guarda la parada</li>
+        <li><b>3</b> Mírala en el mapa</li>
+      </ol>
+    </div>
+  </header>
+
+  <div id="mensaje" role="status" aria-live="polite"></div>
+
+  <main>
+    <section class="panel area-form">
+      <h2 id="titulo-formulario">Registrar parada</h2>
+      <p class="ayuda">Los campos con * son obligatorios.</p>
+
+      <form id="form-parada">
+        <input type="hidden" id="parada-id">
+
+        <div class="campo">
+          <label for="nombre">Nombre de la parada *</label>
+          <input type="text" id="nombre" required placeholder="Ej. Parada Zócalo">
+        </div>
+
+        <div class="campo">
+          <label for="colonia">Colonia *</label>
+          <input type="text" id="colonia" required placeholder="Ej. Centro">
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="latitud">Latitud *</label>
+            <input type="number" id="latitud" step="any" required placeholder="19.0431">
+          </div>
+          <div class="campo">
+            <label for="longitud">Longitud *</label>
+            <input type="number" id="longitud" step="any" required placeholder="-98.1937">
+          </div>
+        </div>
+        <p class="ayuda">Tip: en Google Maps, mantén presionado un punto y copia sus coordenadas.</p>
+
+        <div class="campo">
+          <label for="rutas">Rutas que pasan por aquí</label>
+          <input type="text" id="rutas" placeholder="Ruta 1, Ruta 15, Ruta 72">
+          <span class="ayuda">Sepáralas con comas.</span>
+        </div>
+
+        <div class="campo">
+          <label for="activa">¿Está en servicio?</label>
+          <select id="activa">
+            <option value="true">Sí, activa</option>
+            <option value="false">No, inactiva</option>
+          </select>
+        </div>
+
+        <div class="botones">
+          <button type="submit" id="btn-guardar" class="btn-principal">Guardar parada</button>
+          <button type="button" id="btn-cancelar" class="btn-gris oculto">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel panel-mapa area-mapa">
+      <h2>Mapa de paradas</h2>
+      <p class="ayuda">Toca un marcador para ver sus rutas.</p>
+      <div id="mapa"></div>
+    </section>
+
+    <section class="panel area-lista">
+      <div class="encabezado-lista">
+        <h2>Paradas registradas <span id="contador" class="contador">0</span></h2>
+        <button id="btn-recargar" class="btn-suave">↻ Actualizar</button>
+      </div>
+      <div id="lista-paradas"></div>
+    </section>
+  </main>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
